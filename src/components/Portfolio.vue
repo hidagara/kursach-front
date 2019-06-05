@@ -1,0 +1,42 @@
+<template>
+    <v-content>
+        <v-container fluid fill-height class="grey lighten-4">
+            <v-layout justify-center align-center>
+                <v-flex shrink>
+                    <v-tooltip right>
+                        <template v-slot:activator="{ on }">
+                            <v-btn icon large target="_blank" v-on:click = "hola">
+                                <v-icon large>code</v-icon>
+                            </v-btn>
+                        </template>
+                        <span >Source</span>
+                    </v-tooltip>
+                    <v-tooltip right>
+                        <template v-slot:activator="{ on }">
+                            <v-btn icon large href="https://codepen.io/johnjleider/pen/jZQNbd" target="_blank" v-on="on">
+                                <v-icon large>mdi-codepen</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Codepen</span>
+                    </v-tooltip>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </v-content>
+</template>
+
+<script>
+    export default {
+        name: "Portfolio",
+        methods: {
+            hola: function () {
+                alert("sho")
+            }
+
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
