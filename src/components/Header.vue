@@ -35,7 +35,7 @@
                     <v-list-tile
                             v-else
                             :key="i"
-                            @click=""
+                            @click="changeRoute(item.link)"
                     >
                         <v-list-tile-action>
                             <v-icon>{{ item.icon }}</v-icon>
@@ -63,10 +63,10 @@
         data: () => ({
             drawer: null,
             items: [
-                {icon: 'lightbulb_outline', text: 'Магазин акций'},
-                {icon: 'touch_app', text: 'Компании'},
-                {icon: 'add', text: 'Создать портфель'},
-                {heading: 'Мои портфели'},
+                {icon: 'lightbulb_outline', text: 'Магазин акций', link: "/markets"},
+                {icon: 'touch_app', text: 'Компании', link: '/companies'},
+                {icon: 'add', text: 'Создать портфель', link: '/portfolio/create'},
+                {heading: 'Мои портфели', link: '/portfolio'},
                 {icon: 'archive', text: 'Archive'},
                 {icon: 'delete', text: 'Trash'},
                 {divider: true},
@@ -82,6 +82,14 @@
                 {icon: 'keyboard', text: 'Keyboard shortcuts'}
             ]
         }),
+        methods: {
+            changeRoute: function (link) {
+
+                if (link) {
+                    this.$router.push(link)
+                }
+            }
+        },
         props: {
             source: String
         }
