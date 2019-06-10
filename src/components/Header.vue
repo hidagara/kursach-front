@@ -17,6 +17,7 @@
                             :key="i"
                             row
                             align-center
+                            @click="changeRoute(item.link)"
                     >
                         <v-flex xs6>
                             <v-subheader v-if="item.heading">
@@ -33,7 +34,7 @@
                     <v-list-tile
                             v-else
                             :key="i"
-                            @click=""
+                            @click="changeRoute(item.link)"
                     >
                         <v-list-tile-action>
                             <v-icon>{{ item.icon }}</v-icon>
@@ -58,10 +59,18 @@
 <script>
     export default {
         name: "Header",
+        methods:  {
+            changeRoute: function (link) {
+                alert("click")
+                if (link) {
+                    this.$router.push(link)
+                }
+            }
+        },
         data: () => ({
             drawer: null,
             items: [
-                {icon: 'lightbulb_outline', text: 'Магазин акций'},
+                {icon: 'lightbulb_outline', text: 'Магазин акций', link: "/market"},
                 {icon: 'touch_app', text: 'Компании'},
                 {icon: 'touch_app', text: 'Пользователи'},
                 {heading: 'Мои портфели'},
