@@ -1,7 +1,5 @@
 <template>
     <v-container>
-
-
         <v-navigation-drawer
                 v-model="drawer"
                 fixed
@@ -35,7 +33,7 @@
                     <v-list-tile
                             v-else
                             :key="i"
-                            @click="changeRoute(item.link)"
+                            @click=""
                     >
                         <v-list-tile-action>
                             <v-icon>{{ item.icon }}</v-icon>
@@ -63,33 +61,21 @@
         data: () => ({
             drawer: null,
             items: [
-                {icon: 'lightbulb_outline', text: 'Магазин акций', link: "/markets"},
-                {icon: 'touch_app', text: 'Компании', link: '/companies'},
-                {icon: 'add', text: 'Создать портфель', link: '/portfolio/create'},
-                {heading: 'Мои портфели', link: '/portfolio'},
-                {icon: 'archive', text: 'Archive'},
-                {icon: 'delete', text: 'Trash'},
+                {icon: 'lightbulb_outline', text: 'Магазин акций'},
+                {icon: 'touch_app', text: 'Компании'},
+                {icon: 'touch_app', text: 'Пользователи'},
+                {heading: 'Мои портфели'},
+                // {icon: 'archive', text: 'Archive'},
+                // {icon: 'delete', text: 'Trash'},
+                {icon: 'add', text: 'Создать портфель'},
                 {divider: true},
                 {heading: 'Мои счета'},
-                {icon: 'archive', text: 'Рублевый'},
-                {icon: 'delete', text: 'Далларый'},
+                {icon: 'add', text: 'Открыть счет'},
                 {divider: true},
                 {divider: true},
-                {icon: 'Настройки', text: 'Settings'},
-                {icon: 'chat_bubble', text: 'Trash'},
-                {icon: 'help', text: 'Help'},
-                {icon: 'phonelink', text: 'App downloads'},
-                {icon: 'keyboard', text: 'Keyboard shortcuts'}
+                {icon: 'settings', text: 'Настройки базы данных'}
             ]
         }),
-        methods: {
-            changeRoute: function (link) {
-
-                if (link) {
-                    this.$router.push(link)
-                }
-            }
-        },
         props: {
             source: String
         }

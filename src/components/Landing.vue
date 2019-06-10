@@ -1,24 +1,14 @@
 <template>
+
     <v-content>
+        <Header></Header>
         <v-container fluid fill-height class="grey lighten-4">
             <v-layout justify-center align-center>
-                <v-flex shrink>
-                    <v-tooltip right>
-                        <template v-slot:activator="{ on }">
-                            <v-btn :href="source" icon large target="_blank" v-on="on">
-                                <v-icon large>code</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>Source</span>
-                    </v-tooltip>
-                    <v-tooltip right>
-                        <template v-slot:activator="{ on }">
-                            <v-btn icon large href="https://codepen.io/johnjleider/pen/jZQNbd" target="_blank" v-on="on">
-                                <v-icon large>mdi-codepen</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>Codepen</span>
-                    </v-tooltip>
+                <v-flex xs12>
+                    Добро пожаловать.
+                </v-flex>
+                <v-flex xs12>
+                    Здесь вы можете совершать операции по покупке и продаже акций.
                 </v-flex>
             </v-layout>
         </v-container>
@@ -26,8 +16,10 @@
 </template>
 
 <script>
+    import Header from "./Header";
     export default {
-        name: "Landing"
+        name: "Landing",
+        components: {Header}
     }
 </script>
 
