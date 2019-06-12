@@ -4,7 +4,9 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 
 import { routes } from './routes';
+import VueAxios from './plugins/axios'
 
+Vue.use(VueAxios)
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false

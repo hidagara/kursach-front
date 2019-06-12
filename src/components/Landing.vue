@@ -1,14 +1,23 @@
 <template>
-
     <v-content>
-        <Header></Header>
-        <v-container fluid fill-height class="grey lighten-4">
+        <v-container fluid fill-height>
             <v-layout justify-center align-center>
-                <v-flex xs12>
-                    Добро пожаловать.
-                </v-flex>
-                <v-flex xs12>
-                    Здесь вы можете совершать операции по покупке и продаже акций.
+                <v-flex shrink>
+                    <h2>Магазин акций и управление инвестиционными портфелями</h2>
+                    <p>Позволяет вам покупать акции и в любой момент их продавать по выгодному курсу</p>
+
+                    <v-tooltip right>
+                        <v-btn
+                                icon
+                                large
+                                :href="source"
+                                target="_blank"
+                                slot="activator"
+                        >
+                            <v-icon large>code</v-icon>
+                        </v-btn>
+                        <span>Source</span>
+                    </v-tooltip>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -16,10 +25,9 @@
 </template>
 
 <script>
-    import Header from "./Header";
+
     export default {
-        name: "Landing",
-        components: {Header}
+        name: "Landing"
     }
 </script>
 

@@ -1,55 +1,46 @@
 <template>
-    <div>
-        <v-dialog v-model="dialog" max-width="500px">
-            <v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn>
-            <v-card>
-                <v-card-title><span class="headline">{{ formTitle }}</span></v-card-title>
-                <v-card-text>
-                    <v-container grid-list-md>
-                        <v-layout wrap>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
-                            </v-flex>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
-                            </v-flex>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
-                            </v-flex>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                            </v-flex>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
-                    <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
-        <v-data-table :headers="headers" :items="desserts" hide-actions class="elevation-1">
-            <template slot="items" slot-scope="props">
-                <td>{{ props.item.name }}</td>
-                <td class="text-xs-right">{{ props.item.calories }}</td>
-                <td class="text-xs-right">{{ props.item.fat }}</td>
-                <td class="text-xs-right">{{ props.item.carbs }}</td>
-                <td class="text-xs-right">{{ props.item.protein }}</td>
-                <td class="justify-center layout px-0">
-                    <v-btn icon class="mx-0" @click="editItem(props.item)">
-                        <v-icon color="teal">edit</v-icon>
-                    </v-btn>
-                    <v-btn icon class="mx-0" @click="deleteItem(props.item)">
-                        <v-icon color="pink">delete</v-icon>
-                    </v-btn>
-                </td>
-            </template>
-        </v-data-table>
-    </div>
+    <v-content>
+        <v-container fluid pa-0>
+            <v-layout row wrap>
+                <v-flex xs12 sm4 id="sign-in-text-wrapper">
+                    <v-layout column align-center justify-center fill-height pa-3>
+                        <div class="login-wrapper text-xs-center mb-3">
+                            <div class="display-1 font-weight-black mb-3">Добро пожаловать!</div>	<span class="subheading">Чтобы сохранять все ваши операции пожалуйста, войдите</span>
+                        </div>
+                        <v-btn round outline large dark ripple id="sign-in">Войти</v-btn>
+                    </v-layout>
+                </v-flex>
+                <v-flex xs12 sm8 id="sign-up-form-wrapper" class="active">
+                    <v-layout column align-center justify-center pa-3 mt-5>
+                        <v-flex xs12 mb-3 mt-5>
+                            <div class="login-wrapper text-xs-center">
+                                <div class="display-1 font-weight-black">Создание учетной записи</div>
+                            </div>
+                        </v-flex>
+                        <v-flex xs12 mb-3>
+                            <v-btn outline fab small color="blue-grey lighten-4">
+                                <v-icon color="grey darken-4">whatshot</v-icon>
+                            </v-btn>
+                            <v-btn outline fab small color="blue-grey lighten-4">
+                                <v-icon color="grey darken-4">notifications</v-icon>
+                            </v-btn>
+                            <v-btn outline fab small color="blue-grey lighten-4">
+                                <v-icon color="grey darken-4">school</v-icon>
+                            </v-btn>
+                        </v-flex>
+                        <v-flex xs12 mb-2>	<span class="grey--text text--lighten-1">используйте email для  регистрации</span>
+                        </v-flex>
+                        <v-flex xs12 class="form-wrapper">
+                            <v-text-field box full-width single-line label="Name"></v-text-field>
+                            <v-text-field box full-width single-line label="Email"></v-text-field>
+                            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye-outline' : 'mdi-eye-off-outline'" :type="show1 ? 'text' : 'password'" box full-width single-line label="Password" background-color="#f4f8f7" color="grey darken-2" prepend-inner-icon="mdi-lock-outline" @click:append="show1 = !show1"></v-text-field>
+                        </v-flex>
+                        <v-btn round large dark ripple color="teal" id="sign-up" @click="show = !show">Зарегистрироваться</v-btn>
+                    </v-layout>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </v-content>
 </template>
 
 <script>
@@ -170,5 +161,41 @@
 </script>
 
 <style scoped>
+    .container {
+        min-height: 530px;
+        height: 100vh;
+        width: 100vw;
+        background-image: linear-gradient(253deg,#40b09b 0,#3fb493 100%);
+        color: white;
+    }
 
+    .form-wrapper {
+        min-width: 50%;
+    }
+
+    .layout.wrap {
+        height: 100vh;
+    }
+
+    .active {
+        background: #fff;
+        color: #40ae9f;
+    }
+
+    #sign-in {
+        width: 60%;
+    }
+
+    #sign-up {
+        min-width: 25%;
+    }
+
+    .form-wrapper .v-input__control > .v-input__slot {
+        background: rgba(244,248,247,1);
+    }
+
+    .form-wrapper .v-text-field.v-text-field--enclosed .v-text-field__details {
+        margin-bottom: 0px;
+        height: 0px;
+    }
 </style>

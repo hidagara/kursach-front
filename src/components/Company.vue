@@ -99,8 +99,10 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
-        name: "Market", data: () => ({
+        name: "Company", data: () => ({
             dialog: false,
             selected: [],
             headers: [
@@ -145,7 +147,11 @@
             this.initialize()
         },
         mounted() {
-            alert("moutned")
+            this.$axios.get('http://localhost:9000/user/list')
+                .then(response => (
+                    console.log(response)
+                ))
+                .catch(error => alert(error))
         },
 
         methods: {
