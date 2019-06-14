@@ -55,10 +55,10 @@
                         >
                             <template slot="items" slot-scope="props">
                                 <td>{{ props.item.name }}</td>
-                                <td class="text-xs-right">{{ props.item.name }}</td>
-                                <td class="text-xs-right">{{ props.item.email }}</td>
-                                <td class="text-xs-right">{{ props.item.carbs }}</td>
-                                <td class="text-xs-right">{{ props.item.protein }}</td>
+                                <td class="text-xs-center">{{ props.item.login }}</td>
+                                <td class="text-xs-center">{{ props.item.password }}</td>
+                                <td class="text-xs-center">{{ props.item.country }}</td>
+                                <td class="text-xs-center">{{ props.item.email }}</td>
                                 <td class="justify-center layout px-0">
                                     <v-icon
                                             small
@@ -83,12 +83,12 @@
                 </v-layout>
                 <v-dialog v-model="showYouSure" persistent max-width="290">
                     <v-card>
-                        <v-card-title class="headline">Delete record?</v-card-title>
-                        <v-card-text>Are you sure you want to delete this record?</v-card-text>
+                        <v-card-title class="headline">Удалить запись?</v-card-title>
+                        <v-card-text>Вы действительно хотите удалить пользователя?</v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="green darken-1" flat @click="answerYouSure(false)">Cancel</v-btn>
-                            <v-btn color="red darken-1" flat @click="answerYouSure(true)">Delete</v-btn>
+                            <v-btn color="green darken-1" flat @click="answerYouSure(false)">Отменить</v-btn>
+                            <v-btn color="red darken-1" flat @click="answerYouSure(true)">Удалить</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -109,27 +109,27 @@
                     sortable: false,
                     value: 'fullname'
                 },
-                { text: 'Логин', value: 'login' },
-                { text: 'Пароль', value: 'password' },
-                { text: 'Страна', value: 'carbs' },
-                { text: 'Email', value: 'email' },
-                { text: 'Действия', value: 'name', sortable: false }
+                { text: 'Логин', value: 'login' , align: 'center'},
+                { text: 'Пароль', value: 'password', align: 'center' },
+                { text: 'Страна', value: 'country' , align: 'center'},
+                { text: 'Email', value: 'email' , align: 'center'},
+                { text: 'Действия', value: 'action', sortable: false , align: 'center'}
             ],
             desserts: [],
             editedIndex: -1,
             editedItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0
+                fullname: '',
+                login: 0,
+                password: 0,
+                country: 0,
+                email: 0
             },
             defaultItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0
+                fullname: '',
+                login: 0,
+                password: 0,
+                country: 0,
+                email: 0
             }
         }),
 
@@ -154,13 +154,13 @@
                         this.desserts = response.data
                 })
                 .catch(error => alert(error))
-            this.$axios.put('http://localhost:9000/user/add',{name: 'test', password: 'test',email: 'test', country: 'test2'})
-            this.$axios.delete('http://localhost:9000/user/delete/', )
         },
         methods: {
             initialize () {
-                this.desserts = [
-                   ]
+                this.$axios.get('http://localhost:9000/user/list')
+                    .then(response => {
+                        this.desserts = response.data
+                    })
             },
 
             editItem (item) {
@@ -174,6 +174,7 @@
                 this.askYouSure().then( (confirm) => {
                     if (confirm) this.desserts.splice(index, 1)
                 })
+                this.$axios.delete('http://localhost:9000/user/delete/' + item.id)
             },
 
             askYouSure () {
@@ -183,7 +184,6 @@
                 })
             },
             answerYouSure (confirm) {
-                console.log('answerYouSure called ' + confirm)
                 this.resolveYouSure(confirm)
                 this.showYouSure = false
             },
@@ -202,6 +202,7 @@
                 } else {
                     this.desserts.push(this.editedItem)
                 }
+                this.$axios.put('http://localhost:9000/user/add',this.editedItem)
                 this.close()
             }
         }

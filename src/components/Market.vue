@@ -4,7 +4,7 @@
             <v-layout justify-center align-center>
                 <v-flex>
                     <v-toolbar flat>
-                        <v-toolbar-title>Пользователи</v-toolbar-title>
+                        <v-toolbar-title>Акции</v-toolbar-title>
                         <v-divider
                                 class="mx-2"
                                 inset
@@ -56,11 +56,11 @@
                             class="elevation-1"
                     >
                         <template slot="items" slot-scope="props">
-                            <td>{{ props.item.name }}</td>
-                            <td class="text-xs-right">{{ props.item.calories }}</td>
-                            <td class="text-xs-right">{{ props.item.fat }}</td>
-                            <td class="text-xs-right">{{ props.item.carbs }}</td>
-                            <td class="text-xs-right">{{ props.item.protein }}</td>
+                            <td>{{ props.item.company }}</td>
+                            <td class="text-xs-center">{{ props.item.currentPrice }}</td>
+                            <td class="text-xs-center">{{ props.item.maximumPrice }}</td>
+                            <td class="text-xs-center">{{ props.item.lowPrice }}</td>
+                            <td class="text-xs-center">{{ props.item.industry }}</td>
                             <td class="justify-center layout px-0">
                                 <v-icon
                                         small
@@ -145,25 +145,15 @@
             this.initialize()
         },
         mounted() {
-            alert("moutned")
         },
 
         methods: {
             initialize() {
-                this.desserts = [
-                    {
-                        name: 'Frozen Yogurt',
-                        price: 159
-                    },
-                    {
-                        name: 'Ice cream sandwich',
-                        price: 237
-                    },
-                    {
-                        name: 'Eclair',
-                        price: 262
-                    },
-                ]
+                this.$axios.get('http://localhost:9000/market/list')
+                    .then(response => {
+                        this.desserts = response.data
+                    })
+                    .catch(error => alert(error))
             },
 
             editItem(item) {

@@ -96,7 +96,7 @@
             this.initialize()
         },
         mounted() {
-            alert("moutned")
+
         },
 
         methods: {

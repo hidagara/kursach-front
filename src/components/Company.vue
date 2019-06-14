@@ -4,7 +4,7 @@
             <v-layout justify-center align-center>
                 <v-flex>
                     <v-toolbar flat>
-                        <v-toolbar-title>Пользователи</v-toolbar-title>
+                        <v-toolbar-title>Компании</v-toolbar-title>
                         <v-divider
                                 class="mx-2"
                                 inset
@@ -12,9 +12,7 @@
                         ></v-divider>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" max-width="500px">
-                            <v-btn slot="activator" color="grey" class="mb-2">Добавить акцию</v-btn>
-                            <v-btn slot="activator" color="grey" class="mb-2">Обновить магазин акций</v-btn>
-                            <v-btn slot="activator" color="grey" class="mb-2">Перейти на следующий день</v-btn>
+                            <v-btn slot="activator" color="grey" class="mb-2">Добавить компании</v-btn>
                             <v-card>
                                 <v-card-title>
                                     <span class="headline">{{ formTitle }}</span>
@@ -24,20 +22,15 @@
                                     <v-container grid-list-md>
                                         <v-layout wrap>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.login" label="Логин"></v-text-field>
+                                                <v-text-field v-model="editedItem.login" label="Имя"></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
+                                                <v-text-field v-model="editedItem.email" label="Страна"></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.password" label="Пароль"></v-text-field>
+                                                <v-text-field v-model="editedItem.password" label="Индустрия"></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.fullname" label="ФИО"></v-text-field>
-                                            </v-flex>
-                                            <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.country" label="Страна"></v-text-field>
-                                            </v-flex>
+
                                         </v-layout>
                                     </v-container>
                                 </v-card-text>

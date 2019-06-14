@@ -4,7 +4,7 @@
             <v-layout justify-center align-center>
                 <v-flex>
                     <v-toolbar flat>
-                        <v-toolbar-title>Пользователи</v-toolbar-title>
+                        <v-toolbar-title>Портфели</v-toolbar-title>
                         <v-divider
                                 class="mx-2"
                                 inset
@@ -12,7 +12,7 @@
                         ></v-divider>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" max-width="500px">
-                            <v-btn slot="activator" color="grey" class="mb-2">Добавить пользователя</v-btn>
+                            <v-btn slot="activator" color="grey" class="mb-2">Добавить портфель пользователя</v-btn>
                             <v-card>
                                 <v-card-title>
                                     <span class="headline">{{ formTitle }}</span>
@@ -22,19 +22,19 @@
                                     <v-container grid-list-md>
                                         <v-layout wrap>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.login" label="Логин"></v-text-field>
+                                                <v-text-field v-model="editedItem.login" label="Наименование"></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
+                                                <v-text-field v-model="editedItem.email" label="Валюта"></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.password" label="Пароль"></v-text-field>
+                                                <v-text-field v-model="editedItem.password" label="Акция"></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.fullname" label="ФИО"></v-text-field>
+                                                <v-text-field v-model="editedItem.fullname" label="Количество"></v-text-field>
                                             </v-flex>
                                             <v-flex xs12 sm6 md4>
-                                                <v-text-field v-model="editedItem.country" label="Страна"></v-text-field>
+                                                <v-text-field v-model="editedItem.country" label="Цена"></v-text-field>
                                             </v-flex>
                                         </v-layout>
                                     </v-container>
@@ -104,15 +104,15 @@
             dialog: false,
             headers: [
                 {
-                    text: 'ФИО',
+                    text: 'Наименование',
                     align: 'left',
                     sortable: false,
                     value: 'fullname'
                 },
-                { text: 'Логин', value: 'Login' },
-                { text: 'Пароль', value: 'password' },
-                { text: 'Страна', value: 'carbs' },
-                { text: 'Email', value: 'email' },
+                { text: 'Валюта', value: 'Login' },
+                { text: 'Акция', value: 'password' },
+                { text: 'Количество', value: 'carbs' },
+                { text: 'Цена', value: 'email' },
                 { text: 'Действия', value: 'name', sortable: false }
             ],
             desserts: [],
